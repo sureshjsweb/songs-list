@@ -27,7 +27,7 @@ const DataTable = ({ list }) => {
         setPageSize={setPageSize}
         noOfItems={[10, 20, 25, 50]}
         dValue={DEFAULT_PAGESIZE}></Select>
-      <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '500px' }} list={list} pageSize={pageSize}></Table>
+      <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '300px' }} list={list} pageSize={pageSize}></Table>
     </>
   );
 };

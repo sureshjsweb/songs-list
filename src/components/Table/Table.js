@@ -8,6 +8,8 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize }) => {
     const [edit, setEdit] = useState('');
     const [editRow, setEditRow] = useState({});
 
+    let voteStyle = { display: 'inline-block', cursor: 'pointer' };
+
     const onNew = () => {
         setEdit('NEW');
         setEditRow({
@@ -15,8 +17,7 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize }) => {
             song_name: '',
             album_name: '',
             lyric_text: '',
-            upvote: 0,
-            downvote: 0
+            vote: 0
         });
     };
 
@@ -35,6 +36,20 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize }) => {
         setPageItem([...pageItem.filter((it, index) => index < pageSize)]);
     };
 
+    const onUpVote = (row, i) => {
+        let tempRow = { ...row };
+        tempRow.vote = tempRow.vote + 1;
+        pageItem[i] = { ...tempRow }
+        setPageItem([...pageItem]);
+    }
+
+    const onDownVote = (row, i) => {
+        let tempRow = { ...row };
+        tempRow.vote = (tempRow.vote > 0) ? tempRow.vote - 1 : 0;
+        pageItem[i] = { ...tempRow }
+        setPageItem([...pageItem]);
+    }
+
     return (
         <>
             <button className="btn btn-primary text-right" type="submit" onClick={onNew}>New</button>
@@ -52,14 +67,14 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize }) => {
                         </tr>
                     </thead>
                     <tbody>
-                        {pageItem.map((l) => (
+                        {pageItem.map((l, i) => (
                             <tr key={l.id}>
                                 <td>{l.id}</td>
                                 <td>{l.song_name}</td>
                                 <td>{l.album_name}</td>
                                 <td>{l.lyric_text}</td>
-                                <td>{l.upvote}</td>
-                                <td>{l.downvote}</td>
+                                <td>{l.vote} <h1 onClick={(e) => onUpVote(l, i)} style={voteStyle}>+</h1></td>
+                                <td>{l.vote} <h1 onClick={(e) => onDownVote(l, i)} style={voteStyle}>-</h1></td>
                                 <td><button onClick={e => onEdit(l)}>Edit</button><button onClick={e => onDelete(l)}>Delete</button></td>
                             </tr>
                         ))}
