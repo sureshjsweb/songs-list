@@ -5,6 +5,12 @@ export const computePageItems = (list, value) => {
     });
 }
 
+export const fetchNItems = (list, start, end) => {
+    return list.filter((it, index) => {
+        return index >= start && index <= end;
+    });
+}
+
 export const onSearch = (list, searchQuery) => {
     return list.filter((l) => {
         return ((l.song_name.indexOf(searchQuery) > -1) || (l.album_name.indexOf(searchQuery) > -1) || (l.lyric_text.indexOf(searchQuery) > -1));

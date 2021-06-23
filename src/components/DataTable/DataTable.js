@@ -4,6 +4,7 @@ import { DEFAULT_EDIT, DEFAULT_PAGEITEM, DEFAULT_PAGESIZE, DEFAULT_QUERY, DEFAUL
 import Select from '../Select/Select';
 import Search from './../Search/Search';
 import Table from './../Table/Table';
+import Pagination from '../Pagination/Pagination';
 
 const DataTable = ({ list }) => {
 
@@ -33,6 +34,9 @@ const DataTable = ({ list }) => {
       </section>
       <section>
         <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '300px' }} list={list} pageSize={pageSize}></Table>
+      </section>
+      <section>
+        <Pagination pageItem={pageItem} setPageItem={setPageItem} pageSize={pageSize} list={list}></Pagination>
       </section>
     </>
   );
