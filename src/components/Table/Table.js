@@ -38,7 +38,7 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize }) => {
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Song Name <Filter sort={CompareSongName} pageItem={pageItem} setPageItem={setPageItem}></Filter></th>
+                        <th scope="col">Song Name <span><Filter sort={CompareSongName} pageItem={pageItem} setPageItem={setPageItem}></Filter></span></th>
                         <th scope="col">Album Name <Filter sort={CompareAlbumName} pageItem={pageItem} setPageItem={setPageItem}></Filter></th>
                         <th scope="col" style={customStyle}>Lyric <Filter sort={CompareLyric} pageItem={pageItem} setPageItem={setPageItem}></Filter></th>
                         <th scope="col">Up Vote</th>
