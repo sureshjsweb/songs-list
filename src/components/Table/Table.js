@@ -1,11 +1,11 @@
-const Table = ({ pageItem }) => {
+const Table = ({ customStyle, pageItem }) => {
     return (<table className="table">
         <thead>
             <tr>
                 <th scope="col">Id</th>
                 <th scope="col">Song Name</th>
                 <th scope="col">Album Name</th>
-                <th scope="col" style={{ width: '500px' }}>Lyric</th>
+                <th scope="col" style={customStyle}>Lyric</th>
                 <th scope="col">Up Vote</th>
                 <th scope="col">Down Vote</th>
             </tr>

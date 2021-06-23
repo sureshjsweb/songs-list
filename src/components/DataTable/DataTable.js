@@ -3,22 +3,32 @@ import { computePageItems } from './DataTable.service';
 import Select from '../Select/Select';
 import Search from './../Search/Search';
 import Table from './../Table/Table';
+import { DEFAULT_PAGEITEM, DEFAULT_PAGESIZE, DEFAULT_QUERY } from '../../constants/Constants';
 
 const DataTable = ({ list }) => {
 
-  const [pageSize, setPageSize] = useState(25);
-  const [pageItem, setPageItem] = useState([]);
-  const [searchQuery, setSearchQuery] = useState("");
+  const [pageSize, setPageSize] = useState(DEFAULT_PAGESIZE);
+  const [pageItem, setPageItem] = useState(DEFAULT_PAGEITEM);
+  const [searchQuery, setSearchQuery] = useState(DEFAULT_QUERY);
 
   useEffect(() => {
     list.length && setPageItem(computePageItems(list, pageSize));
-  }, [pageSize]);
+  }, [pageSize, list]);
 
   return (
     <>
-      <Search searchQuery={searchQuery} setSearchQuery={setSearchQuery} pageItem={pageItem} setPageItem={setPageItem}></Search>
-      <Select style={{ float: 'right' }} label="No of Page items" setPageSize={setPageSize} noOfItems={[10, 20, 25, 50]}></Select>
-      <Table pageItem={pageItem}></Table>
+      <Search
+        searchQuery={searchQuery}
+        setSearchQuery={setSearchQuery}
+        pageItem={pageItem}
+        setPageItem={setPageItem}></Search>
+      <Select
+        style={{ float: 'right' }}
+        label="No of Page items"
+        setPageSize={setPageSize}
+        noOfItems={[10, 20, 25, 50]}
+        dValue={DEFAULT_PAGESIZE}></Select>
+      <Table pageItem={pageItem} customStyle={{ width: '500px' }}></Table>
     </>
   );
 };
