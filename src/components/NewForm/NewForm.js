@@ -1,15 +1,22 @@
 import { useState } from 'react';
+import PropTypes from "prop-types";
 
-const NewForm = ({ isEdit, row, onUpdate }) => {
+const NewForm = ({ mode, row }) => {
     const [song, setSong] = useState(row);
 
-    let title = isEdit === 'EDIT' ? "Edit Song Detail" : "New Song Detail";
+    let title = (mode === 'EDIT') ? "Edit Song Detail" : "New Song Detail";
 
     const set = name => {
         return ({ target: { value } }) => {
             setSong((oldValues) => ({ ...oldValues, [name]: value }));
         }
     }
+
+    const onUpdate = (e) => {
+        e.preventDefault();
+        // setPageItem([...pageItem.filter(it => it.id !== updateSong.id), updateSong]);
+        // setEdit('');
+    };
 
     return (
         <form>
@@ -32,11 +39,16 @@ const NewForm = ({ isEdit, row, onUpdate }) => {
                     <input type="text" className="form-control" value={song.lyric_text} onChange={set('lyric_text')} />
                 </div>
                 <div className="col-12">
-                    <button className="btn btn-primary" type="submit" onClick={(e) => onUpdate(song)}>{isEdit === 'EDIT' ? 'Update' : 'Save'}</button><button className="btn btn-secondary" type="submit">Cancel</button>
+                    <button className="btn btn-primary" type="submit" onClick={onUpdate}>{mode === 'EDIT' ? 'Update' : 'Save'}</button><button className="btn btn-danger" type="submit">Cancel</button>
                 </div>
             </div>
         </form>
     );
 }
+
+NewForm.propTypes = {
+    song_name: PropTypes.string.isRequired,
+    album_name: PropTypes.string.isRequired
+};
 
 export default NewForm;
