@@ -1,6 +1,6 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { computePageItems } from './DataTable.service';
-import { useEffect } from 'react';
+import Select from '../Select/Select';
 
 const DataTable = ({ list }) => {
 
@@ -13,11 +13,7 @@ const DataTable = ({ list }) => {
 
   return (
     <>
-      <label style={{ float: 'right' }}>No of Page items<select onChange={(e) => setPageSize(e.target.value)}>
-        <option value="10">10</option>
-        <option value="25">25</option>
-        <option value="50">50</option>
-      </select></label>
+      <Select style={{ float: 'right' }} label="No of Page items" setPageSize={setPageSize} noOfItems={[10, 25, 50]}></Select>
       <table className="table">
         <thead>
           <tr>
