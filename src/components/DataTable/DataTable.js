@@ -13,7 +13,7 @@ const DataTable = ({ list }) => {
 
   useEffect(() => {
     list.length && setPageItem(computePageItems(list, pageSize));
-  }, [pageSize, list]);
+  }, [pageSize, list, searchQuery]);
 
   return (
     <>
