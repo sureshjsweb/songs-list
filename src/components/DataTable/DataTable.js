@@ -6,7 +6,6 @@ import Search from './../Search/Search';
 import Table from './../Table/Table';
 
 const DataTable = ({ list }) => {
-
   const [pageSize, setPageSize] = useState(DEFAULT_PAGESIZE);
   const [pageItem, setPageItem] = useState(DEFAULT_PAGEITEM);
   const [searchQuery, setSearchQuery] = useState(DEFAULT_QUERY);
