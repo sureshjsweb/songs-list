@@ -1,4 +1,4 @@
-import { BrowserRouter as Router, Switch, Route, NavLink } from "react-router-dom";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import DataTable from "../DataTable/DataTable";
 import NewForm from './../NewForm/NewForm';
 
@@ -10,10 +10,10 @@ const Home = ({ list }) => {
                 <nav>
                     <ul className="nav">
                         <li className="nav-item">
-                            <NavLink to="/">Songs List</NavLink>
+                            <Link to="/">Songs List</Link>
                         </li>
                         <li className="nav-item" style={{ paddingLeft: '10px' }}>
-                            <NavLink to="/new">Add New Song</NavLink>
+                            <Link to="/new">Add New Song</Link>
                         </li>
                     </ul>
                 </nav>

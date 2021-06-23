@@ -35,7 +35,7 @@ const DataTable = ({ list }) => {
       <section>
         <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '300px' }} list={list} pageSize={pageSize}></Table>
       </section>
-      <section>
+      <section style={{ textAlign: 'right' }}>
         <Pagination pageItem={pageItem} setPageItem={setPageItem} pageSize={pageSize} list={list}></Pagination>
       </section>
     </>

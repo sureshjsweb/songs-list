@@ -2,7 +2,7 @@ import { useState } from 'react';
 import PropTypes from "prop-types";
 
 const NewForm = ({ mode, row }) => {
-    const [song, setSong] = useState(row);
+    const [song, setSong] = useState({});
 
     let title = (mode === 'EDIT') ? "Edit Song Detail" : "New Song Detail";
 
