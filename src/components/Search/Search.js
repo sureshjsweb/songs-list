@@ -1,4 +1,4 @@
-import { onSearch } from "../DataTable/DataTable.service";
+import { onSearch } from "../Common.service";
 import { DEFAULT_QUERY } from './../../constants/Constants';
 
 const Search = ({ searchQuery, setSearchQuery, pageItem, setPageItem }) => {

@@ -1,9 +1,9 @@
 import { useState, useEffect } from 'react';
-import { computePageItems } from './DataTable.service';
+import { computePageItems } from '../Common.service';
+import { DEFAULT_PAGEITEM, DEFAULT_PAGESIZE, DEFAULT_QUERY } from '../../constants/Constants';
 import Select from '../Select/Select';
 import Search from './../Search/Search';
 import Table from './../Table/Table';
-import { DEFAULT_PAGEITEM, DEFAULT_PAGESIZE, DEFAULT_QUERY } from '../../constants/Constants';
 
 const DataTable = ({ list }) => {
 
@@ -28,7 +28,7 @@ const DataTable = ({ list }) => {
         setPageSize={setPageSize}
         noOfItems={[10, 20, 25, 50]}
         dValue={DEFAULT_PAGESIZE}></Select>
-      <Table pageItem={pageItem} customStyle={{ width: '500px' }}></Table>
+      <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '500px' }}></Table>
     </>
   );
 };
