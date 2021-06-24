@@ -32,10 +32,10 @@ const DataTable = ({ list, setMode, mode }) => {
           dValue={DEFAULT_PAGESIZE}></Select>
       </section>
       <section>
-        <Table pageItem={pageItem} setPageItem={setPageItem} list={list} pageSize={pageSize} mode={mode} setMode={setMode} customStyle={{ width: '300px' }}></Table>
+        <Table pageItem={pageItem} setPageItem={setPageItem} list={list} pageSize={pageSize} mode={mode} setMode={setMode} customStyle={{ width: '250px' }}></Table>
       </section>
       <section style={{ textAlign: 'right' }}>
-        <Pagination pageItem={pageItem} setPageItem={setPageItem} pageSize={pageSize} list={list}></Pagination>
+        <Pagination pageItem={pageItem} setPageItem={setPageItem} pageSize={pageSize} setPageSize={setPageSize} list={list}></Pagination>
       </section>
     </>
   );

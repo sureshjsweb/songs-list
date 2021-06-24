@@ -3,7 +3,7 @@ import { useEffect } from 'react';
 const Select = ({ style, label, setPageSize, noOfItems, dValue }) => {
 
     useEffect(() => {
-        setPageSize(dValue)
+        setPageSize(dValue);
     }, [])
 
     return (

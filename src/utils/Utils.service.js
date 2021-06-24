@@ -40,8 +40,3 @@ export const CompareLyric = (a, b) => {
         return 1;
     return 0;
 }
-
-export const isValidObject = (obj) => {
-    console.log(Object.keys(obj));
-    return Object.keys(obj).length;
-}

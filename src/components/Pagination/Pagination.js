@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react';
 import { fetchNItems } from './../../utils/Utils.service';
 
-const Pagination = ({ pageItem, setPageItem, pageSize, list }) => {
+const Pagination = ({ pageItem, setPageItem, pageSize, list, setPageSize }) => {
     const [page, setPage] = useState(1);
     const remainder = list.length % pageSize;
     const noOfPages = (list.length / pageSize) + (remainder ? 1 : 0);
@@ -12,6 +12,7 @@ const Pagination = ({ pageItem, setPageItem, pageSize, list }) => {
     }
 
     useEffect(() => {
+        setPageSize(parseInt(pageSize));
         if (page === 1) {
             list.length && setPageItem(fetchNItems(list, page, pageSize));
         } else if (page === pages.length) {
