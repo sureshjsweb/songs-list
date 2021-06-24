@@ -2,15 +2,15 @@ import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/fontawesome-free-solid';
 import { CompareAlbumName, CompareSongName, CompareLyric } from '../../utils/Utils.service';
 import Filter from './../Filter/Filter';
+import { useHistory } from 'react-router-dom';
 
-const Table = ({ customStyle, pageItem, setPageItem, list, pageSize }) => {
+const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode }) => {
 
     let voteStyle = { cursor: 'pointer' };
-
+    const history = useHistory();
     const onEdit = (row) => {
-        // setEdit('EDIT');
-        // setEditRow(row);
-        // history.push('/edit', row);
+        setMode('EDIT');
+        history.push({ pathname: '/edit', state: row });
     };
 
     const onDelete = (row) => {

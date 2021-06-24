@@ -1,8 +1,16 @@
 import { useState } from 'react';
 import PropTypes from "prop-types";
+import { useLocation } from 'react-router-dom';
 
-const NewForm = ({ mode, row }) => {
-    const [song, setSong] = useState({});
+const NewForm = ({ mode }) => {
+    const location = useLocation();
+    const [song, setSong] = useState(mode === 'NEW' ? {
+        id: Math.floor(Math.random() * 1000),
+        song_name: '',
+        album_name: '',
+        lyric_text: '',
+        vote: 0
+    } : { ...location.state });
 
     let title = (mode === 'EDIT') ? "Edit Song Detail" : "New Song Detail";
 
@@ -14,7 +22,7 @@ const NewForm = ({ mode, row }) => {
 
     const onUpdate = (e) => {
         e.preventDefault();
-        // setPageItem([...pageItem.filter(it => it.id !== updateSong.id), updateSong]);
+        // setPageItem([...pageItem.filter(it => it.id !== song.id), { ...song }]);
         // setEdit('');
     };
 
