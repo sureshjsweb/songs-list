@@ -6,7 +6,7 @@ import Search from './../Search/Search';
 import Table from './../Table/Table';
 import Pagination from '../Pagination/Pagination';
 
-const DataTable = ({ list, setMode }) => {
+const DataTable = ({ list, setMode, mode }) => {
 
   const [pageSize, setPageSize] = useState(DEFAULT_PAGESIZE);
   const [pageItem, setPageItem] = useState(DEFAULT_PAGEITEM);
@@ -33,7 +33,7 @@ const DataTable = ({ list, setMode }) => {
           dValue={DEFAULT_PAGESIZE}></Select>
       </section>
       <section>
-        <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '300px' }} list={list} pageSize={pageSize} setMode={setMode}></Table>
+        <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '300px' }} list={list} pageSize={pageSize} mode={mode} setMode={setMode}></Table>
       </section>
       <section style={{ textAlign: 'right' }}>
         <Pagination pageItem={pageItem} setPageItem={setPageItem} pageSize={pageSize} list={list}></Pagination>

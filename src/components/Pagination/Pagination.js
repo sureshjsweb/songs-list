@@ -2,11 +2,11 @@ import { useEffect, useState } from 'react';
 import { fetchNItems } from './../../utils/Utils.service';
 
 const Pagination = ({ pageItem, setPageItem, pageSize, list }) => {
-    const [page, setPage] = useState(0);
+    const [page, setPage] = useState(1);
     const remainder = list.length % pageSize;
     const noOfPages = (list.length / pageSize) + (remainder ? 1 : 0);
     const pages = [];
-
+    console.log('From Pagination: ', pageItem);
     for (let i = 1; i <= noOfPages; i++) {
         pages.push(i);
     }

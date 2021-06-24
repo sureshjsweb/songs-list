@@ -29,13 +29,13 @@ const Home = ({ list }) => {
                 </nav>
                 <Switch>
                     <Route path="/new">
-                        <NewForm mode></NewForm>
+                        <NewForm mode={mode} setMode={setMode}></NewForm>
                     </Route>
                     <Route path="/edit">
-                        <NewForm mode></NewForm>
+                        <NewForm mode={mode} setMode={setMode}></NewForm>
                     </Route>
                     <Route path="/">
-                        <DataTable list={list} setMode={setMode} />
+                        <DataTable list={list} mode={mode} setMode={setMode} />
                     </Route>
                 </Switch>
             </div>

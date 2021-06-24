@@ -1,16 +1,21 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
-import { useLocation } from 'react-router-dom';
+import { useHistory, useLocation } from 'react-router-dom';
 
-const NewForm = ({ mode }) => {
+const NewForm = ({ mode, setMode }) => {
     const location = useLocation();
-    const [song, setSong] = useState(mode === 'NEW' ? {
+    const history = useHistory();
+    let row = {
         id: Math.floor(Math.random() * 1000),
         song_name: '',
         album_name: '',
         lyric_text: '',
         vote: 0
-    } : { ...location.state });
+    };
+    if (location && location.state) {
+        row = { ...location.state };
+    }
+    const [song, setSong] = useState(row);
 
     let title = (mode === 'EDIT') ? "Edit Song Detail" : "New Song Detail";
 
@@ -22,9 +27,17 @@ const NewForm = ({ mode }) => {
 
     const onUpdate = (e) => {
         e.preventDefault();
-        // setPageItem([...pageItem.filter(it => it.id !== song.id), { ...song }]);
-        // setEdit('');
+        setMode('');
+        history.push({ pathname: '/', state: { ...song } });
     };
+
+    const onCancel = () => {
+        history.push({ pathname: '/' });
+    }
+
+    useEffect(() => {
+
+    }, [song])
 
     return (
         <form>
@@ -47,7 +60,7 @@ const NewForm = ({ mode }) => {
                     <input type="text" className="form-control" value={song.lyric_text} onChange={set('lyric_text')} />
                 </div>
                 <div className="col-12">
-                    <button className="btn btn-primary" type="submit" onClick={onUpdate}>{mode === 'EDIT' ? 'Update' : 'Save'}</button><button className="btn btn-danger" type="submit">Cancel</button>
+                    <button className="btn btn-primary" type="submit" onClick={onUpdate}>{mode === 'EDIT' ? 'Update' : 'Save'}</button><button className="btn btn-danger" type="submit" onClick={onCancel}>Cancel</button>
                 </div>
             </div>
         </form>
