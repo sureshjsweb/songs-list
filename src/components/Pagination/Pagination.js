@@ -6,14 +6,10 @@ const Pagination = ({ pageItem, setPageItem, pageSize, list }) => {
     const remainder = list.length % pageSize;
     const noOfPages = (list.length / pageSize) + (remainder ? 1 : 0);
     const pages = [];
-    console.log('From Pagination: ', pageItem);
+
     for (let i = 1; i <= noOfPages; i++) {
         pages.push(i);
     }
-
-    const fetchPageItems = (selectedPage) => {
-        setPage(selectedPage);
-    };
 
     useEffect(() => {
         if (page === 1) {
@@ -27,7 +23,7 @@ const Pagination = ({ pageItem, setPageItem, pageSize, list }) => {
 
     return (<div>
         {
-            pages.map(p => <a key={p} href='#' style={{ padding: '10px' }} onClick={() => fetchPageItems(p)}>{p}</a>)
+            pages.map(p => <a key={p} href='#' style={{ padding: '10px' }} onClick={() => setPage(p)}>{p}</a>)
         }
     </div>);
 }

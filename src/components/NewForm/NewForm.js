@@ -2,15 +2,16 @@ import { useEffect, useState } from 'react';
 import PropTypes from "prop-types";
 import { useHistory, useLocation } from 'react-router-dom';
 
-const NewForm = ({ mode, setMode }) => {
+const NewForm = ({ mode, setMode, list, setList }) => {
     const location = useLocation();
     const history = useHistory();
     let row = {
-        id: Math.floor(Math.random() * 1000),
+        id: list.length,
         song_name: '',
         album_name: '',
         lyric_text: '',
-        vote: 0
+        upVote: 0,
+        downVote: 0
     };
     if (location && location.state) {
         row = { ...location.state };
@@ -28,7 +29,10 @@ const NewForm = ({ mode, setMode }) => {
     const onUpdate = (e) => {
         e.preventDefault();
         setMode('');
-        history.push({ pathname: '/', state: { ...song } });
+        const t = [...list];
+        t[parseInt(song.id)] = { ...song };
+        setList([...t]);
+        history.push({ pathname: '/' });
     };
 
     const onCancel = () => {

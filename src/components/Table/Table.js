@@ -1,6 +1,6 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/fontawesome-free-solid';
-import { useHistory, useLocation } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
 import { useEffect, useState } from 'react';
 import { CompareAlbumName, CompareSongName, CompareLyric } from '../../utils/Utils.service';
 import Filter from './../Filter/Filter';
@@ -12,7 +12,6 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
 
     let voteStyle = { cursor: 'pointer' };
     const history = useHistory();
-    const location = useLocation();
 
     const onEdit = (row) => {
         setMode('EDIT');
@@ -49,14 +48,11 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
     }
 
     useEffect(() => {
-        // let id = parseInt(location.state.id);
-        // let newData = [{ ...location.state }, ...pageItem.filter(it => it.id !== id)];
-        // console.log(newData);
-        // setPageItem([...newData]);
+
     }, [mode])
 
     return (
-        <>
+        <div>
             <table className="table table-striped">
                 <thead>
                     <tr>
@@ -84,7 +80,7 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
                 </tbody>
             </table>
             <ModalWindow show={show} handleClose={handleClose} onDelete={onDelete}></ModalWindow>
-        </>
+        </div>
     );
 }
 

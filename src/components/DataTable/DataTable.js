@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react';
 import { computePageItems } from '../../utils/Utils.service';
-import { DEFAULT_EDIT, DEFAULT_PAGEITEM, DEFAULT_PAGESIZE, DEFAULT_QUERY, DEFAULT_EDITROW } from '../../constants/Constants';
+import { DEFAULT_PAGEITEM, DEFAULT_PAGESIZE, DEFAULT_QUERY } from '../../constants/Constants';
 import Select from '../Select/Select';
 import Search from './../Search/Search';
 import Table from './../Table/Table';
@@ -11,7 +11,6 @@ const DataTable = ({ list, setMode, mode }) => {
   const [pageSize, setPageSize] = useState(DEFAULT_PAGESIZE);
   const [pageItem, setPageItem] = useState(DEFAULT_PAGEITEM);
   const [searchQuery, setSearchQuery] = useState(DEFAULT_QUERY);
-  const [editRow, setEditRow] = useState(DEFAULT_EDITROW);
 
   useEffect(() => {
     list.length && setPageItem(computePageItems(list, pageSize));
@@ -33,7 +32,7 @@ const DataTable = ({ list, setMode, mode }) => {
           dValue={DEFAULT_PAGESIZE}></Select>
       </section>
       <section>
-        <Table pageItem={pageItem} setPageItem={setPageItem} customStyle={{ width: '300px' }} list={list} pageSize={pageSize} mode={mode} setMode={setMode}></Table>
+        <Table pageItem={pageItem} setPageItem={setPageItem} list={list} pageSize={pageSize} mode={mode} setMode={setMode} customStyle={{ width: '300px' }}></Table>
       </section>
       <section style={{ textAlign: 'right' }}>
         <Pagination pageItem={pageItem} setPageItem={setPageItem} pageSize={pageSize} list={list}></Pagination>
