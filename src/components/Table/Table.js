@@ -1,11 +1,15 @@
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faThumbsUp, faThumbsDown } from '@fortawesome/fontawesome-free-solid';
 import { useHistory, useLocation } from 'react-router-dom';
-import { useEffect } from 'react';
+import { useEffect, useState } from 'react';
 import { CompareAlbumName, CompareSongName, CompareLyric } from '../../utils/Utils.service';
 import Filter from './../Filter/Filter';
+import ModalWindow from '../ModalWindow/ModalWindow';
 
 const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mode }) => {
+    const [show, setShow] = useState(false);
+    const [row, setRow] = useState({});
+
     let voteStyle = { cursor: 'pointer' };
     const history = useHistory();
     const location = useLocation();
@@ -13,11 +17,6 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
     const onEdit = (row) => {
         setMode('EDIT');
         history.push({ pathname: '/edit', state: row });
-    };
-
-    const onDelete = (row) => {
-        pageItem = [...pageItem.filter(it => it.id !== row.id)];
-        setPageItem([...pageItem.filter((it, index) => index < pageSize)]);
     };
 
     const onUpVote = (row, i) => {
@@ -32,6 +31,21 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
         tempRow.downVote = tempRow.downVote + 1;
         pageItem[i] = { ...tempRow }
         setPageItem([...pageItem]);
+    }
+
+    const onDelete = () => {
+        pageItem = [...pageItem.filter(it => it.id !== row.id)];
+        setPageItem([...pageItem.filter((it, index) => index < pageSize)]);
+        setShow(false);
+    };
+
+    const confirmDelete = (row) => {
+        setShow(true);
+        setRow(row);
+    }
+
+    const handleClose = () => {
+        setShow(false);
     }
 
     useEffect(() => {
@@ -64,11 +78,12 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
                             <td>{l.lyric_text}</td>
                             <td><div>{l.upVote}</div><div><FontAwesomeIcon icon={faThumbsUp} onClick={(e) => onUpVote(l, i)} style={voteStyle} /></div></td>
                             <td><div>{l.downVote}</div><div><FontAwesomeIcon icon={faThumbsDown} onClick={(e) => onDownVote(l, i)} style={voteStyle} /></div></td>
-                            <td><button className="btn btn-success" onClick={e => onEdit(l)}>Edit</button><button className="btn btn-danger" onClick={e => onDelete(l)}>Delete</button></td>
+                            <td><button className="btn btn-success" onClick={e => onEdit(l)}>Edit</button><button className="btn btn-danger" onClick={e => confirmDelete(l)}>Delete</button></td>
                         </tr>
                     ))}
                 </tbody>
             </table>
+            <ModalWindow show={show} handleClose={handleClose} onDelete={onDelete}></ModalWindow>
         </>
     );
 }
