@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import { fetchNItems } from './../../utils/Utils.service';
+import "./Pagination.css";
 
 const Pagination = ({ pageItem, setPageItem, pageSize, list, setPageSize }) => {
     const [page, setPage] = useState(1);
@@ -22,11 +23,11 @@ const Pagination = ({ pageItem, setPageItem, pageSize, list, setPageSize }) => {
         }
     }, [page])
 
-    return (<div>
+    return <div>
         {
-            pages.map(p => <a key={p} href='#' style={{ padding: '10px' }} onClick={() => setPage(p)}>{p}</a>)
+            pages.map((p) => <a key={p} href='#' style={{ padding: '5px 10px' }} className={(page === p) ? 'active' : ''} onClick={() => setPage(p)}>{p}</a>)
         }
-    </div>);
+    </div>;
 }
 
 export default Pagination;
