@@ -5,6 +5,7 @@ import { useEffect, useState } from 'react';
 import { CompareAlbumName, CompareSongName, CompareLyric } from '../../utils/Utils.service';
 import Filter from './../Filter/Filter';
 import ModalWindow from '../ModalWindow/ModalWindow';
+import "./Table.css";
 
 const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mode }) => {
     const [show, setShow] = useState(false);
@@ -20,14 +21,16 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
 
     const onUpVote = (row, i) => {
         let tempRow = { ...row };
-        tempRow.upVote = tempRow.upVote + 1;
+        tempRow.upVote = 1;
+        tempRow.downVote = 0;
         pageItem[i] = { ...tempRow }
         setPageItem([...pageItem]);
     }
 
     const onDownVote = (row, i) => {
         let tempRow = { ...row };
-        tempRow.downVote = tempRow.downVote + 1;
+        tempRow.upVote = 0;
+        tempRow.downVote = 1;
         pageItem[i] = { ...tempRow }
         setPageItem([...pageItem]);
     }
@@ -72,8 +75,8 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
                             <td>{l.song_name}</td>
                             <td>{l.album_name}</td>
                             <td>{l.lyric_text}</td>
-                            <td><div>{l.upVote}</div><div><FontAwesomeIcon icon={faThumbsUp} onClick={(e) => onUpVote(l, i)} style={voteStyle} /></div></td>
-                            <td><div>{l.downVote}</div><div><FontAwesomeIcon icon={faThumbsDown} onClick={(e) => onDownVote(l, i)} style={voteStyle} /></div></td>
+                            <td><div className={(l.upVote === 1) ? 'voteActive' : 'voteInActive'}>{l.upVote}</div><div><FontAwesomeIcon icon={faThumbsUp} className={(l.upVote === 1) ? 'voteActive' : 'voteInActive'} onClick={(e) => onUpVote(l, i)} style={voteStyle} /></div></td>
+                            <td><div className={(l.downVote === 1) ? 'voteActive' : 'voteInActive'}>{l.downVote}</div><div><FontAwesomeIcon icon={faThumbsDown} className={(l.downVote === 1) ? 'voteActive' : 'voteInActive'} onClick={(e) => onDownVote(l, i)} style={voteStyle} /></div></td>
                             <td><button className="btn btn-sm mr-1 ml-1 btn-success" onClick={e => onEdit(l)}>Edit</button><button className="btn btn-sm ml-1 mr-1 btn-danger" onClick={e => confirmDelete(l)}>Delete</button></td>
                         </tr>
                     ))}
