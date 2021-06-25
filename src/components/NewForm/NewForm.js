@@ -64,7 +64,7 @@ const NewForm = ({ mode, setMode, list, setList }) => {
                     <input type="text" className="form-control" value={song.lyric_text} onChange={set('lyric_text')} />
                 </div>
                 <div className="col-12">
-                    <button className="btn btn-primary" type="submit" onClick={onUpdate}>{mode === 'EDIT' ? 'Update' : 'Save'}</button><button className="btn btn-danger" type="submit" onClick={onCancel}>Cancel</button>
+                    <button className="btn btn-primary mr-4" type="submit" onClick={onUpdate}>{mode === 'EDIT' ? 'Update' : 'Save'}</button><button className="btn btn-danger" type="submit" onClick={onCancel}>Cancel</button>
                 </div>
             </div>
         </form>

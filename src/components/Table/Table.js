@@ -74,7 +74,7 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
                             <td>{l.lyric_text}</td>
                             <td><div>{l.upVote}</div><div><FontAwesomeIcon icon={faThumbsUp} onClick={(e) => onUpVote(l, i)} style={voteStyle} /></div></td>
                             <td><div>{l.downVote}</div><div><FontAwesomeIcon icon={faThumbsDown} onClick={(e) => onDownVote(l, i)} style={voteStyle} /></div></td>
-                            <td><button className="btn btn-success" onClick={e => onEdit(l)}>Edit</button><button className="btn btn-danger" onClick={e => confirmDelete(l)}>Delete</button></td>
+                            <td><button className="btn btn-sm mr-1 ml-1 btn-success" onClick={e => onEdit(l)}>Edit</button><button className="btn btn-sm ml-1 mr-1 btn-danger" onClick={e => confirmDelete(l)}>Delete</button></td>
                         </tr>
                     ))}
                 </tbody>
