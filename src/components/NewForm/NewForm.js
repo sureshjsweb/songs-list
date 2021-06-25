@@ -28,11 +28,13 @@ const NewForm = ({ mode, setMode, list, setList }) => {
 
     const onUpdate = (e) => {
         e.preventDefault();
-        setMode('');
-        const t = [...list];
-        t[parseInt(song.id)] = { ...song };
-        setList([...t]);
-        history.push({ pathname: '/' });
+        if ((song.song_name !== '') && (song.album_name !== '')) {
+            setMode('');
+            const t = [...list];
+            t[parseInt(song.id)] = { ...song };
+            setList([...t]);
+            history.push({ pathname: '/' });
+        }
     };
 
     const onCancel = () => {
@@ -44,22 +46,24 @@ const NewForm = ({ mode, setMode, list, setList }) => {
     }, [song])
 
     return (
-        <form>
+        <form role="form">
             <h1 className="text-center">{title}</h1>
             <div className="container">
-                <div className="mb-3">
+                <div className="form-group mb-3">
                     <label className="form-label">ID</label>
                     <input type="text" className="form-control" defaultValue={song.id} readOnly />
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3">
                     <label className="form-label">Song Name</label>
                     <input type="text" className="form-control" value={song.song_name} onChange={set('song_name')} />
+                    <span className="text-danger">{song.song_name === '' ? "Please enter song name" : ""}</span>
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3">
                     <label className="form-label">Album Name</label>
                     <input type="text" className="form-control" value={song.album_name} onChange={set('album_name')} />
+                    <span className="text-danger">{song.album_name === '' ? "Please enter album name" : ""}</span>
                 </div>
-                <div className="mb-3">
+                <div className="form-group mb-3">
                     <label className="form-label">Lyric</label>
                     <input type="text" className="form-control" value={song.lyric_text} onChange={set('lyric_text')} />
                 </div>
