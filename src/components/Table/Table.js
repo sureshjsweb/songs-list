@@ -10,6 +10,11 @@ import "./Table.css";
 const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mode }) => {
     const [show, setShow] = useState(false);
     const [row, setRow] = useState({});
+    const [sorting, setSorting] = useState({
+        filterBy: '',
+        asc: false,
+        dsc: false
+    });
 
     let voteStyle = { cursor: 'pointer' };
     const history = useHistory();
@@ -60,9 +65,9 @@ const Table = ({ customStyle, pageItem, setPageItem, list, pageSize, setMode, mo
                 <thead>
                     <tr>
                         <th scope="col">Id</th>
-                        <th scope="col">Song Name <span><Filter sort={CompareSongName} pageItem={pageItem} setPageItem={setPageItem}></Filter></span></th>
-                        <th scope="col">Album Name <Filter sort={CompareAlbumName} pageItem={pageItem} setPageItem={setPageItem}></Filter></th>
-                        <th scope="col" style={customStyle}>Lyric <Filter sort={CompareLyric} pageItem={pageItem} setPageItem={setPageItem}></Filter></th>
+                        <th scope="col">Song Name <span><Filter sort={CompareSongName} pageItem={pageItem} setPageItem={setPageItem} sorting={sorting} setSorting={setSorting} filter='song'></Filter></span></th>
+                        <th scope="col">Album Name <Filter sort={CompareAlbumName} pageItem={pageItem} setPageItem={setPageItem} sorting={sorting} setSorting={setSorting} filter='album'></Filter></th>
+                        <th scope="col" style={customStyle}>Lyric <Filter sort={CompareLyric} pageItem={pageItem} setPageItem={setPageItem} sorting={sorting} setSorting={setSorting} filter='lyric'></Filter></th>
                         <th scope="col">Up Vote</th>
                         <th scope="col">Down Vote</th>
                         <th scope="col">Action</th>
